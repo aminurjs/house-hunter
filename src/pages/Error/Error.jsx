@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../components/Nabvar/Navbar";
+import Footer from "../../components/Footer/Footer";
 
 const Error = () => {
   return (
     <div>
-      <div className="z-10 mb-2">
+      <div className="mb-1">
         <Navbar />
       </div>
-      <div className="max-w-7xl mx-auto text-center px-10 -z-10">
+      <div className="max-w-7xl mx-auto text-center px-10">
         <div className="md:w-3/5 lg:w-1/2 mx-auto mb-5">
           <img src="https://i.ibb.co/r3FL66t/404.webp" alt="" />
         </div>
@@ -20,6 +21,9 @@ const Error = () => {
             Go home
           </button>
         </Link>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );
