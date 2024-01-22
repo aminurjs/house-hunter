@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import AddNewHouse from "./AddNewHouse";
 
 const list = [
   {
@@ -18,22 +17,19 @@ const list = [
   },
 ];
 
-const ListOFHouses = () => {
+const BookingList = () => {
   return (
     <>
       <div className="overflow-x-auto">
         <div className="bg-white p-5">
-          <div className="py-5 px-2">
-            <AddNewHouse />
-          </div>
           <table className="table">
             {/* head */}
             <thead>
               <tr>
                 <th className="text-xl font-semibold text-dark-01 ">Picture</th>
-                <th className="text-xl font-semibold text-dark-01 ">Name:</th>
-                <th className="text-xl font-semibold text-dark-01 ">Edit</th>
-                <th className="text-xl font-semibold text-dark-01 ">Delete</th>
+                <th className="text-xl font-semibold text-dark-01 ">Name</th>
+                <th className="text-xl font-semibold text-dark-01 ">Cost</th>
+                <th className="text-xl font-semibold text-dark-01 ">Cancel</th>
               </tr>
             </thead>
             <tbody>
@@ -55,16 +51,14 @@ const ListOFHouses = () => {
                     </div>
                   </td>
                   <td>
-                    <Link to={`/dashboard/details/${item?.email}`}>
-                      <button className="btn btn-info btn-sm btn-outline">
-                        Edit
-                      </button>
-                    </Link>
+                    <div className="font-bold text-dark-01 text-2xl">
+                      ${item?.rent_per_month}
+                    </div>
                   </td>
                   <td>
                     <Link to={`/dashboard/details/${item?.email}`}>
                       <button className="btn btn-error btn-sm btn-outline">
-                        Delete
+                        Cancel
                       </button>
                     </Link>
                   </td>
@@ -78,4 +72,4 @@ const ListOFHouses = () => {
   );
 };
 
-export default ListOFHouses;
+export default BookingList;

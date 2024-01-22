@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
-import DashboardMenu from ".././Menu";
+import Menu from "../Menu";
 
-const HouseOwnerDashboard = () => {
+const HouseRenterDashboard = () => {
   return (
     <div className="flex max-w-7xl mx-auto mt-1">
       <div className="md:w-1/5 bg-white">
         <div className="p-2">
-          <DashboardMenu />
+          <Menu />
         </div>
       </div>
       <div className="w-full bg-slate-100 min-h-screen">
@@ -18,4 +18,4 @@ const HouseOwnerDashboard = () => {
   );
 };
 
-export default HouseOwnerDashboard;
+export default HouseRenterDashboard;

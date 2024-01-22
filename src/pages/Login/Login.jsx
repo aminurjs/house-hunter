@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <>
       <div className="bg-transparent">
-        <div className="max-w-7xl mx-auto p-10">
+        <div className="max-w-5xl mx-auto p-10">
           <div className="bg-white  rounded shadow p-10 flex items-center border border-gray-200">
             <div className="max-w-2xl w-full mx-auto">
               <h1 className="text-4xl text-dark-01  font-semibold text-center mb-2">

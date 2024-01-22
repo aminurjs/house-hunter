@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import Error from "../pages/Error/Error";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ListOFHouses from "../pages/Dashboard/Owner/ListOFHouses";
+import BookingList from "../pages/Dashboard/Renter/BookingList";
 
 const Routes = createBrowserRouter([
   {
@@ -25,8 +26,12 @@ const Routes = createBrowserRouter([
         element: <Dashboard />,
         children: [
           {
-            index: true,
+            path: "/dashboard/owner",
             element: <ListOFHouses />,
+          },
+          {
+            path: "/dashboard/renter",
+            element: <BookingList />,
           },
         ],
       },
