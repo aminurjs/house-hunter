@@ -16,11 +16,15 @@ import useAxios from "../../../Hooks/useAxios";
 import { FaHouse, FaLocationDot } from "react-icons/fa6";
 import useUser from "../../../Hooks/useUser";
 import swal from "sweetalert";
+import { useEffect } from "react";
 
 const HouseDetails = () => {
   const { id } = useParams();
   const axios = useAxios();
   const { user } = useUser();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { data: houseDetails = {} } = useQuery({
     queryKey: ["house-details"],
@@ -56,7 +60,7 @@ const HouseDetails = () => {
     rent_per_month,
     room_size,
   };
-  const hanleBooking = async () => {
+  const handleBooking = async () => {
     if (user.role === "house_owner") {
       return swal({ title: "House owner can't Book" });
     }
@@ -68,8 +72,8 @@ const HouseDetails = () => {
         }
       })
       .catch((err) => {
-        console.log(err.message);
-        swal("Something is wrong", "", "error");
+        console.log(err);
+        swal(err.response.data, "", "error");
       });
   };
 
@@ -168,7 +172,7 @@ const HouseDetails = () => {
           </p>
         </div>
         <button
-          onClick={hanleBooking}
+          onClick={handleBooking}
           className=" py-3 px-12 text-white text-sm font-medium  bg-dark-03 duration-500  rounded active:scale-95"
         >
           Confirm Booking

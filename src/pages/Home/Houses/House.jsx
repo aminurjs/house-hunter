@@ -1,5 +1,5 @@
 import { FaRulerCombined } from "react-icons/fa";
-import { FaHouse } from "react-icons/fa6";
+import { FaHouse, FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const House = ({ house }) => {
@@ -29,10 +29,9 @@ const House = ({ house }) => {
             Room-Size: {house.room_size} sqf.
           </p>
         </div>
-        <p className="text-dark-02 mb-4">
-          {house?.description?.length > 60
-            ? `${house.description.slice(0, 60)} ...`
-            : house.description}
+        <p className="text-dark-02 mb-2 flex items-center gap-2">
+          <FaLocationDot className="text-lg text-dark-03" />
+          Address: {house.address}
         </p>
         <Link to={`/house-details/${house._id}`}>
           <button className="py-3 px-8 lg:px-10 text-white bg-dark-03 rounded active:scale-95">

@@ -49,7 +49,7 @@ const Houses = () => {
       <h2 className="text-lg md:text-2xl text-center font-medium  mb-12">
         Discover Your Perfect Stay
       </h2>
-      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {houses?.map((house) => (
           <House key={house._id} house={house} />
         ))}
