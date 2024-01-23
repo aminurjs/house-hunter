@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom";
 import Menu from ".././Menu";
+import ListOFHouses from "./ListOFHouses";
 
 const HouseOwnerDashboard = () => {
   return (
@@ -11,7 +11,7 @@ const HouseOwnerDashboard = () => {
       </div>
       <div className="w-full bg-slate-100 min-h-screen">
         <div className=" p-6">
-          <Outlet />
+          <ListOFHouses />
         </div>
       </div>
     </div>

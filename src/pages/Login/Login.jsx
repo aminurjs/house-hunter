@@ -3,12 +3,10 @@ import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
-import useUser from "../../Hooks/useUser";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const axios = useAxios();
-  const { refetch } = useUser();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -30,10 +28,8 @@ const Login = () => {
     axios
       .post("/login", data)
       .then((response) => {
-        console.log(response.data);
         if (response.data) {
           toast.success("Successfully Logged In!", { id: toastId });
-          refetch();
           navigate("/dashboard");
         }
       })

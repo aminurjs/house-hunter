@@ -4,7 +4,7 @@ import useAxios from "./useAxios";
 const useUser = () => {
   const axios = useAxios();
   const {
-    data: user = null,
+    data: user,
     isPending,
     refetch,
   } = useQuery({
@@ -15,7 +15,6 @@ const useUser = () => {
       return res.data;
     },
   });
-  console.log(user, refetch);
   return { user, isPending, refetch };
 };
 

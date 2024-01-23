@@ -4,7 +4,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios";
 import axios from "axios";
-import useUser from "../../Hooks/useUser";
 
 const key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
@@ -14,7 +13,6 @@ const Register = () => {
   const [required, setRequired] = useState("");
   const [passVal, setPassVal] = useState("");
   const axiosHook = useAxios();
-  const { refetch } = useUser();
   const navigate = useNavigate();
 
   const handleFileChange = (event) => {
@@ -80,14 +78,12 @@ const Register = () => {
       phone_number: parseFloat(phone_number),
       photo,
     };
-    console.log(data);
     axiosHook
       .post("/register", data)
       .then((response) => {
         console.log(response.data);
         if (response.data.insertedId) {
           toast.success("Successfully Registered!", { id: toastId });
-          refetch();
           navigate("/dashboard");
         }
       })

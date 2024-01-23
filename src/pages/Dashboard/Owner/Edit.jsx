@@ -6,7 +6,7 @@ import swal from "sweetalert";
 
 const key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 
-const AddNewHouse = () => {
+const Edit = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const { user } = useUser();
   const axiosHook = useAxios();
@@ -15,7 +15,7 @@ const AddNewHouse = () => {
     const file = event.target.files[0];
     setSelectedFile(file);
   };
-  const handleAddNewHouse = async (e) => {
+  const handleEdit = async (e) => {
     e.preventDefault();
 
     const form = new FormData(e.currentTarget);
@@ -97,7 +97,7 @@ const AddNewHouse = () => {
               ✕
             </span>
           </label>
-          <form onSubmit={handleAddNewHouse} className="mt-8">
+          <form onSubmit={handleEdit} className="mt-8">
             <h1 className="font-bold text-dark-01 text-2xl text-center mb-10">
               House Details
             </h1>
@@ -332,4 +332,4 @@ const AddNewHouse = () => {
   );
 };
 
-export default AddNewHouse;
+export default Edit;
