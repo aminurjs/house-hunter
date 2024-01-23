@@ -10,7 +10,7 @@ const Navbar = () => {
   const { user, refetch } = useUser();
 
   const handleLogout = async () => {
-    const res = await axios.post("/auth/logout");
+    const res = await axios.get("/auth/logout");
     console.log(res);
     refetch();
   };
