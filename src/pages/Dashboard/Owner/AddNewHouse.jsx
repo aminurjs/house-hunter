@@ -3,7 +3,7 @@ const AddNewHouse = () => {
     <div>
       {/* The button to open modal */}
       <label htmlFor="add_new_house">
-        <span className=" py-3 px-12 text-white text-lg font-medium  bg-dark-03 duration-500  rounded active:scale-95">
+        <span className=" py-3 px-12 text-white text-sm font-medium  bg-dark-03 duration-500  rounded active:scale-95">
           Add New House
         </span>
       </label>
@@ -11,9 +11,9 @@ const AddNewHouse = () => {
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="add_new_house" className="modal-toggle" />
       <div className="modal" role="dialog">
-        <div className="modal-box max-w-5xl">
+        <div className="modal-box max-w-3xl">
           <label htmlFor="add_new_house">
-            <span className="btn btn-sm btn-circle btn-ghost absolute right-2 text-red-400 top-2">
+            <span className="btn btn-sm btn-circle btn-ghost absolute right-3 text-red-400 top-4">
               ✕
             </span>
           </label>
@@ -25,7 +25,7 @@ const AddNewHouse = () => {
               <div className="mb-4">
                 <div>
                   <label
-                    className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                    className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                     htmlFor="house_name"
                   >
                     House Name:
@@ -33,7 +33,7 @@ const AddNewHouse = () => {
                 </div>
                 <div>
                   <input
-                    className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                    className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                     type="text"
                     name="house_name"
                     id="house_name"
@@ -45,7 +45,7 @@ const AddNewHouse = () => {
               <div className="mb-4">
                 <div>
                   <label
-                    className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                    className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                     htmlFor="address"
                   >
                     Address:
@@ -53,7 +53,7 @@ const AddNewHouse = () => {
                 </div>
                 <div>
                   <input
-                    className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                    className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                     type="text"
                     name="address"
                     id="address"
@@ -67,7 +67,7 @@ const AddNewHouse = () => {
               <div className="mb-4">
                 <div>
                   <label
-                    className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                    className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                     htmlFor="city"
                   >
                     City:
@@ -75,7 +75,7 @@ const AddNewHouse = () => {
                 </div>
                 <div>
                   <input
-                    className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                    className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                     type="text"
                     name="city"
                     id="city"
@@ -87,7 +87,7 @@ const AddNewHouse = () => {
               <div className="mb-4">
                 <div>
                   <label
-                    className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                    className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                     htmlFor="bedrooms"
                   >
                     Bedrooms:
@@ -95,7 +95,7 @@ const AddNewHouse = () => {
                 </div>
                 <div>
                   <input
-                    className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                    className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                     type="number"
                     name="bedrooms"
                     id="bedrooms"
@@ -109,7 +109,7 @@ const AddNewHouse = () => {
               <div className="mb-4">
                 <div>
                   <label
-                    className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                    className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                     htmlFor="bathrooms"
                   >
                     Bathrooms:
@@ -117,7 +117,7 @@ const AddNewHouse = () => {
                 </div>
                 <div>
                   <input
-                    className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                    className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                     type="number"
                     name="bathrooms"
                     id="bathrooms"
@@ -129,7 +129,7 @@ const AddNewHouse = () => {
               <div className="mb-4">
                 <div>
                   <label
-                    className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                    className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                     htmlFor="room-size"
                   >
                     Room-size : {"(sqf.)"}
@@ -137,7 +137,7 @@ const AddNewHouse = () => {
                 </div>
                 <div>
                   <input
-                    className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                    className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                     type="number"
                     name="room-size"
                     id="room-size"
@@ -149,7 +149,7 @@ const AddNewHouse = () => {
               <div className="mb-4">
                 <div>
                   <label
-                    className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                    className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                     htmlFor="rent_per_month"
                   >
                     Rent Per Month:
@@ -158,14 +158,14 @@ const AddNewHouse = () => {
                 <div>
                   <div className="relative">
                     <input
-                      className="pl-8 pr-5 py-2 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                      className="pl-8 pr-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                       type="number"
                       name="rent_per_month"
                       id="rent_per_month"
                       placeholder="Type"
                       required
                     />
-                    <span className="absolute top-2 left-3 text-lg text-dark-02">
+                    <span className="absolute top-2 left-3 text-sm text-dark-02">
                       $
                     </span>
                   </div>
@@ -174,7 +174,7 @@ const AddNewHouse = () => {
               <div className="mb-4">
                 <div>
                   <label
-                    className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                    className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                     htmlFor="phone_number"
                   >
                     Phone Number:
@@ -182,7 +182,7 @@ const AddNewHouse = () => {
                 </div>
                 <div>
                   <input
-                    className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                    className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                     type="number"
                     name="phone_number"
                     id="phone_number"
@@ -195,7 +195,7 @@ const AddNewHouse = () => {
             <div className="mb-4">
               <div>
                 <label
-                  className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                  className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                   htmlFor="image"
                 >
                   Image:
@@ -204,7 +204,7 @@ const AddNewHouse = () => {
               <div>
                 <input
                   // onChange={handleFileChange}
-                  className=" p-1.5 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                  className=" p-1.5 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                   type="file"
                   accept=".png, .jpg, .jpeg, .avif, .webp"
                   name="image"
@@ -215,7 +215,7 @@ const AddNewHouse = () => {
             <div className="mb-4">
               <div>
                 <label
-                  className="text-lg font-medium text-dark-01 opacity-80 mb-1 block"
+                  className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
                   htmlFor="description"
                 >
                   Description:
@@ -223,7 +223,7 @@ const AddNewHouse = () => {
               </div>
               <div>
                 <textarea
-                  className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-gray-50   rounded-md w-full"
+                  className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                   name="description"
                   id="description"
                   placeholder="Room Description ..."
@@ -235,9 +235,9 @@ const AddNewHouse = () => {
             <div>
               <button
                 type="submit"
-                className="w-full mt-6 py-2.5 text-white text-lg font-medium  bg-dark-03  duration-500  rounded active:scale-95"
+                className="px-10 py-2.5 text-white  font-medium  bg-dark-03  duration-500  rounded active:scale-95"
               >
-                Add
+                Add House
               </button>
             </div>
           </form>

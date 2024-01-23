@@ -6,6 +6,7 @@ import Error from "../pages/Error/Error";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import ListOFHouses from "../pages/Dashboard/Owner/ListOFHouses";
 import BookingList from "../pages/Dashboard/Renter/BookingList";
+import Home from "../pages/Home/Home";
 
 const Routes = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const Routes = createBrowserRouter([
     element: <App />,
     errorElement: <Error />,
     children: [
+      {
+        index: true,
+        element: <Home />,
+      },
       {
         path: "/register",
         element: <Register />,
