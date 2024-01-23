@@ -1,20 +1,11 @@
-import axios from "axios";
-import { useState } from "react";
-import useUser from "../../../Hooks/useUser";
 import useAxios from "../../../Hooks/useAxios";
 import swal from "sweetalert";
 
-const key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+// eslint-disable-next-line react/prop-types
+const Edit = ({ item, refetch }) => {
+  const axios = useAxios();
 
-const Edit = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const { user } = useUser();
-  const axiosHook = useAxios();
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-  };
+  console.log(item);
   const handleEdit = async (e) => {
     e.preventDefault();
 
@@ -28,35 +19,9 @@ const Edit = () => {
     const rent_per_month = form.get("rent_per_month");
     const phone_number = form.get("phone_number");
     const description = form.get("description");
-    let image;
-    const formData = new FormData();
-    formData.append("image", selectedFile);
-    try {
-      const response = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${key}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
 
-      if (response.status === 200) {
-        const imageUrl = response.data.data.url;
-        image = imageUrl;
-        console.log("Image uploaded successfully:", imageUrl);
-      } else {
-        console.error("Image upload failed:", response.statusText);
-      }
-    } catch (error) {
-      image = null;
-      console.error("Error uploading image:", error.message);
-    }
     const data = {
-      email: user.email,
       house_name,
-      image,
       address,
       bathrooms,
       bedrooms,
@@ -66,11 +31,21 @@ const Edit = () => {
       phone_number,
       description,
     };
-    axiosHook
-      .post("/add-new-house", data)
+    axios
+      .patch(`/update-house/${item._id}`, data)
       .then((response) => {
-        if (response.data.insertedId) {
-          swal("House Added!", "", "success");
+        console.log(response.data.modifiedCount > 0);
+        if (response.data) {
+          swal("House Updated!", "", "success");
+          refetch();
+          return (
+            <label
+              className="modal-backdrop"
+              htmlFor={`update_house_${item._id}`}
+            >
+              Close
+            </label>
+          );
         }
       })
       .catch((err) => {
@@ -82,24 +57,26 @@ const Edit = () => {
   return (
     <div>
       {/* The button to open modal */}
-      <label htmlFor="add_new_house">
-        <span className="cursor-pointer py-3 px-12 text-white text-sm font-medium  bg-dark-03 duration-500  rounded active:scale-95">
-          Add New House
-        </span>
+      <label htmlFor={`update_house_${item._id}`}>
+        <span className="btn btn-info btn-sm btn-outline">Edit</span>
       </label>
 
       {/* Put this part before </body> tag */}
-      <input type="checkbox" id="add_new_house" className="modal-toggle" />
+      <input
+        type="checkbox"
+        id={`update_house_${item._id}`}
+        className="modal-toggle"
+      />
       <div className="modal" role="dialog">
         <div className="modal-box max-w-3xl">
-          <label htmlFor="add_new_house">
+          <label htmlFor={`update_house_${item._id}`}>
             <span className="btn btn-sm btn-circle btn-ghost absolute right-3 text-red-400 top-4">
               ✕
             </span>
           </label>
           <form onSubmit={handleEdit} className="mt-8">
             <h1 className="font-bold text-dark-01 text-2xl text-center mb-10">
-              House Details
+              Update House Details
             </h1>
             <div className=" grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="mb-4">
@@ -117,6 +94,7 @@ const Edit = () => {
                     type="text"
                     name="house_name"
                     id="house_name"
+                    defaultValue={item?.house_name}
                     placeholder="Type here"
                     required
                   />
@@ -137,6 +115,7 @@ const Edit = () => {
                     type="text"
                     name="address"
                     id="address"
+                    defaultValue={item?.address}
                     placeholder="Type Address"
                     required
                   />
@@ -159,6 +138,7 @@ const Edit = () => {
                     type="text"
                     name="city"
                     id="city"
+                    defaultValue={item?.city}
                     placeholder="Type"
                     required
                   />
@@ -179,6 +159,7 @@ const Edit = () => {
                     type="number"
                     name="bedrooms"
                     id="bedrooms"
+                    defaultValue={item?.bedrooms}
                     placeholder="Type"
                     required
                   />
@@ -200,6 +181,7 @@ const Edit = () => {
                     className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                     type="number"
                     name="bathrooms"
+                    defaultValue={item?.bathrooms}
                     id="bathrooms"
                     placeholder="Type"
                     required
@@ -221,6 +203,7 @@ const Edit = () => {
                     type="number"
                     name="room_size"
                     id="room_size"
+                    defaultValue={item?.room_size}
                     placeholder="Type"
                     required
                   />
@@ -240,6 +223,7 @@ const Edit = () => {
                     <input
                       className="pl-8 pr-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
                       type="number"
+                      defaultValue={item?.rent_per_month}
                       name="rent_per_month"
                       id="rent_per_month"
                       placeholder="Type"
@@ -263,34 +247,14 @@ const Edit = () => {
                 <div>
                   <input
                     className="px-5 py-2 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
-                    type="number"
+                    type="text"
                     name="phone_number"
                     id="phone_number"
+                    defaultValue={item?.phone_number}
                     placeholder="Type Your Number"
                     required
                   />
                 </div>
-              </div>
-            </div>
-            <div className="mb-4">
-              <div>
-                <label
-                  className="text-sm font-medium text-dark-01 opacity-80 mb-1 block"
-                  htmlFor="image"
-                >
-                  Image:
-                </label>
-              </div>
-              <div>
-                <input
-                  onChange={handleFileChange}
-                  className=" p-1.5 outline-none text-sm border border-gray-200 text-dark-01  bg-gray-50   rounded w-full"
-                  type="file"
-                  accept=".png, .jpg, .jpeg, .avif, .webp"
-                  name="image"
-                  id="image"
-                  required
-                />
               </div>
             </div>
             <div className="mb-4">
@@ -308,6 +272,7 @@ const Edit = () => {
                   name="description"
                   id="description"
                   placeholder="Room Description ..."
+                  defaultValue={item?.description}
                   required
                   rows="4"
                 ></textarea>
@@ -324,7 +289,7 @@ const Edit = () => {
             </div>
           </form>
         </div>
-        <label className="modal-backdrop" htmlFor="add_new_house">
+        <label className="modal-backdrop" htmlFor={`update_house_${item._id}`}>
           Close
         </label>
       </div>

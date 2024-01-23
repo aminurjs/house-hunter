@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
 import AddNewHouse from "./AddNewHouse";
 import useAxios from "../../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import useUser from "../../../Hooks/useUser";
+import swal from "sweetalert";
+import Edit from "./Edit";
 
 // const list = [
 //   {
@@ -25,14 +26,38 @@ const ListOFHouses = () => {
   const axios = useAxios();
   const { user } = useUser();
 
-  const { data: listOfHouses = [] } = useQuery({
+  const { data: listOfHouses = [], refetch } = useQuery({
     queryKey: ["listOfHouses"],
     queryFn: async () => {
       const res = await axios.get(`/list-of-houses/${user.email}`);
       return res.data;
     },
   });
-  console.log(listOfHouses);
+
+  const handleDelete = async (id) => {
+    swal({
+      title: "Are you sure?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete(`/house/delete/${id}`)
+          .then((response) => {
+            console.log(response.data);
+            if (response.data.deletedCount > 0) {
+              swal("Successfully Deleted", "", "success");
+              refetch();
+            }
+          })
+          .catch((error) => {
+            return swal("Something Error", error.message, "error");
+          });
+      }
+    });
+  };
+
   return (
     <>
       <div className="overflow-x-auto">
@@ -74,18 +99,15 @@ const ListOFHouses = () => {
                       </h2>
                     </td>
                     <td>
-                      <Link to={`/dashboard/details/${item?.email}`}>
-                        <button className="btn btn-info btn-sm btn-outline">
-                          Edit
-                        </button>
-                      </Link>
+                      <Edit item={item} refetch={refetch} />
                     </td>
                     <td>
-                      <Link to={`/dashboard/details/${item?.email}`}>
-                        <button className="btn btn-error btn-sm btn-outline">
-                          Delete
-                        </button>
-                      </Link>
+                      <button
+                        onClick={() => handleDelete(item._id)}
+                        className="btn btn-error btn-sm btn-outline"
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}

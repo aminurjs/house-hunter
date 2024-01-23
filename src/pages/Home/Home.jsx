@@ -1,10 +1,16 @@
 import Banner from "./Banner/Banner";
+import Houses from "./Houses/Houses";
 
 const Home = () => {
   return (
-    <div>
-      <Banner />
-    </div>
+    <main>
+      <section>
+        <Banner />
+      </section>
+      <section>
+        <Houses />
+      </section>
+    </main>
   );
 };
 
