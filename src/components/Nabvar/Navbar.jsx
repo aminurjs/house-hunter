@@ -2,9 +2,18 @@ import { Link, NavLink } from "react-router-dom";
 import { FaUserAlt } from "react-icons/fa";
 import { navLink } from "./NavItems";
 import "./Navbar.css";
+import useUser from "../../Hooks/useUser";
+import useAxios from "../../Hooks/useAxios";
 
 const Navbar = () => {
-  const user = null;
+  const axios = useAxios();
+  const { user, refetch } = useUser();
+
+  const handleLogout = async () => {
+    const res = await axios.post("/auth/logout");
+    console.log(res);
+    refetch();
+  };
   return (
     <div className="w-full py-3  bg-base-100 shadow">
       <div className="max-w-7xl mx-auto navbar">
@@ -52,14 +61,14 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-        </div>{" "}
+        </div>
         <div className="flex-none px-2 mx-2">
           {user ? (
             <div className="dropdown dropdown-end">
               <label tabIndex={1} className="btn btn-ghost btn-circle avatar">
-                {user?.photoURL ? (
+                {user?.photo ? (
                   <div className="w-10 rounded-full bg-white">
-                    <img src={user.photoURL} />
+                    <img src={user.photo} />
                   </div>
                 ) : (
                   <div className="w-10 p-1.5 border border-gray-400 rounded-full">
@@ -72,9 +81,9 @@ const Navbar = () => {
                 className="mt-3 z-[99] shadow menu menu-sm dropdown-content bg-base-100 rounded-box p-5 min-w-[220px] border border-gray-200"
               >
                 <label className="avatar text-center mx-auto">
-                  {user?.photoURL ? (
+                  {user?.photo ? (
                     <div className="w-16 rounded-full bg-white">
-                      <img src={user.photoURL} />
+                      <img src={user.photo} />
                     </div>
                   ) : (
                     <div className="w-16 p-3 border border-gray-500 rounded-full">
@@ -83,14 +92,16 @@ const Navbar = () => {
                   )}
                 </label>
                 <h2 className="mt-2  text-neutral-900  font-medium text-lg text-center">
-                  {user?.displayName}
+                  {user?.name}
                 </h2>
                 <h2 className="mb-4  text-neutral-900  font-medium text-sm text-center">
                   {user?.email}
                 </h2>
                 <ul>
                   <li>
-                    <button className="btn btn-sm">Log Out</button>
+                    <button onClick={handleLogout} className="btn btn-sm">
+                      Log Out
+                    </button>
                   </li>
                 </ul>
               </div>

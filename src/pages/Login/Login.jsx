@@ -1,9 +1,50 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAxios from "../../Hooks/useAxios";
+import useUser from "../../Hooks/useUser";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const axios = useAxios();
+  const { refetch } = useUser();
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    const toastId = toast.loading("Logging in ...");
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+
+    if (password.length < 6) {
+      toast.error(" Password should have at least  6 characters", {
+        id: toastId,
+      });
+      return;
+    }
+    const data = { email, password };
+    console.log(data);
+    axios
+      .post("/login", data)
+      .then((response) => {
+        console.log(response.data);
+        if (response.data) {
+          toast.success("Successfully Logged In!", { id: toastId });
+          refetch();
+          navigate("/dashboard");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.code === "ERR_NETWORK") {
+          return toast.error(error.code, { id: toastId });
+        }
+        return toast.error(error.response.data, { id: toastId });
+      });
+  };
 
   return (
     <>
@@ -20,7 +61,7 @@ const Login = () => {
                   Go Register!
                 </Link>
               </p>
-              <form className="mt-8">
+              <form onSubmit={handleLogin} className="mt-8">
                 <input
                   className="px-5 py-2 outline-none border border-gray-200 text-dark-01  bg-slate-100   rounded-md w-full mb-4"
                   type="email"
